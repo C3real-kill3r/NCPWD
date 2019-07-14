@@ -10,9 +10,7 @@ In line with the councils objectives, the council carries out various activities
 
 ## Proposed flow of information
 
-
 ![NCPWD_info_flow](https://user-images.githubusercontent.com/38909130/61181471-c4fb7b80-a62f-11e9-9673-4feb81379196.png)
-
 
 The application will be divided into two platforms, android and web. The web application will be used by the administrators to convey messages and view statistics to help in critical decision making. The android application(android version 4.0+) will be used by the PWD to engage with one another and also receive regular updates from the administrators.
 
