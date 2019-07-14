@@ -10,20 +10,22 @@ In line with the councils objectives, the council carries out various activities
 
 ## Proposed flow of information
 
+
+
 The application will be divided into two platforms, android and web. The web application will be used by the administrators to convey messages and view statistics to help in critical decision making. The android application(android version 4.0+) will be used by the PWD to engage with one another and also receive regular updates from the administrators.
 
 Data will be updated by the council through the web application that will sync with the mobile application as well as the data currently held in the council databases.
 
 ## Objectives of the application
 
-* To Public
+### To Public
 
 1. Showcase ongoing and past event activies that the council has engaged in.
 2. Enhance awareness and social networking among PWD's through the custom made android app.
 3. Allow tailored messages to reach specific people as will be required by the council in carrying out their mandate.
 4. Notify PWD's if they have upcoming functions in their area through location based profiling.
 
-* To Administrators
+### To Administrators
 
 1. Provide detailed tailored information about persons with disabilities.
 2. Allow viewing summary data on people registered with disabilities on the go.
