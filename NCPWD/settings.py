@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'NCPWD.apps.authentication'
 ]
 
 MIDDLEWARE = [
@@ -106,10 +107,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTIATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'authors.apps.authentication.backends.JWTAuthentication',
     ]
 }
 
+AUTH_USER_MODEL = 'authentication.User'
+
+# sendGrid API Settings
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_SENDER = os.getenv("EMAIL_HOST_SENDER")
+EMAIL_USE_TLS = True
 
 TEMPLATES = [
     {
