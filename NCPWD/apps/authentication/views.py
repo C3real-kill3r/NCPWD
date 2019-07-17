@@ -8,7 +8,8 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from NCPWD.apps.authentication.serializers import (
-    RegistrationSerializer, LoginSerializer)
+    RegistrationSerializer, LoginSerializer, ForgotPasswordSerializer,
+    ResetPasswordSerializer)
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -107,3 +108,61 @@ class AccountVerificationView(APIView):
             user.save()
 
         return Response(data, status=res)
+
+
+class ForgotPasswordView(CreateAPIView):
+    permission_classes = AllowAny,
+    serializer_class = ForgotPasswordSerializer
+
+    def post(self, request):
+        email = request.data.get('email', "")
+        user = User.objects.filter(email=email).first()
+        username = user.username
+
+        if user is None:
+            response = {"message": "An account with this email does not exist."}
+            return Response(response, status.HTTP_400_BAD_REQUEST)
+
+        token = default_token_generator.make_token(user)
+        subject, from_email, to_email = 'Reset your NCPWD account password.', os.getenv("EMAIL_HOST_SENDER"), email
+
+        reset_link = client.get_password_reset_link(token)
+        html_content = render_to_string(
+            'password_reset.html',
+            {'reset_password_link': reset_link, 'username': username},)
+        text_content = strip_tags(html_content)
+        msg = EmailMultiAlternatives(
+            subject, text_content, from_email, [to_email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+        response = {
+            "message": "A password reset link has been sent to your email."}
+
+        return Response(response, status.HTTP_200_OK)
+
+
+class ResetPasswordView(APIView):
+    permission_classes = AllowAny,
+    serializer_class = ResetPasswordSerializer
+
+    def put(self, request, token):
+        data = request.data
+        email = data['email']
+        user = User.objects.filter(email=email).first()
+        username = user.username
+        data['token'] = token
+        serializer = self.serializer_class(data=data)
+        serializer.is_valid(raise_exception=True)
+        subject, from_email, to_email = 'NCPWD password reset confirmation', os.getenv("EMAIL_HOST_SENDER"), email
+
+        html_content = render_to_string(
+            'success_password_reset.html', {'username': username})
+
+        text_content = strip_tags(html_content)
+        msg = EmailMultiAlternatives(
+            subject, text_content, from_email, [to_email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        response = {"message": "Your password has been successfully reset!!"}
+        return Response(response, status.HTTP_200_OK)
