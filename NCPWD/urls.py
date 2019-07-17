@@ -18,4 +18,6 @@ from django.urls import path, include
 urlpatterns = [
     path('api/', include(
         'NCPWD.apps.authentication.urls', namespace='authentication')),
+    path('api/', include('NCPWD.apps.user_profile.urls', namespace='user_profile'))
 ]
+
