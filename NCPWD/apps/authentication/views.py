@@ -18,6 +18,7 @@ from rest_framework.generics import CreateAPIView
 
 from .models import User
 from NCPWD.apps.core import client
+from NCPWD.apps.user_profile.models import Profile
 
 
 class RegistrationAPIView(CreateAPIView):
@@ -35,6 +36,8 @@ class RegistrationAPIView(CreateAPIView):
         serializer.save()
 
         user = User.objects.filter(email=user['email']).first()
+        user_profile = Profile.objects.create(user=user);
+        print(user_profile)
 
         RegistrationAPIView.send_account_activation_email(user, request)
 

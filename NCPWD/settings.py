@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'NCPWD.apps.authentication'
+    'NCPWD.apps.authentication',
+    'NCPWD.apps.user_profile'
 ]
 
 MIDDLEWARE = [
@@ -106,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTIATION_CLASSES': [
-        'authors.apps.authentication.backends.JWTAuthentication',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'NCPWD.apps.authentication.backends.JWTAuthentication',
     ]
 }
 
@@ -159,3 +160,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
