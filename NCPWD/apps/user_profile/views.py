@@ -15,7 +15,7 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
                      mixins.ListModelMixin,
                      GenericViewSet
                      ):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
 
@@ -24,4 +24,6 @@ class DisabilityViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = DisabilitySerializer
     queryset = Disability.objects.all()
+
+
 
