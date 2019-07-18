@@ -9,12 +9,6 @@ from NCPWD.apps.core import validations
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    first_name = serializers.CharField(
-        required=True,
-    )
-    last_name = serializers.CharField(
-        required=True,
-    )
     username = serializers.CharField(
         required=True,
     )
