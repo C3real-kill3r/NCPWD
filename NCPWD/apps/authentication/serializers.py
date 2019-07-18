@@ -2,6 +2,7 @@ import re
 
 from .models import User
 from django.contrib.auth import authenticate
+from django.contrib.auth.tokens import default_token_generator
 from rest_framework import serializers
 
 from NCPWD.apps.core import validations
@@ -146,3 +147,29 @@ class LoginSerializer(serializers.Serializer):
             'username': user.username,
             'token': user.token
         }
+
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(max_length=128, write_only=True)
+    confirm_password = serializers.CharField(max_length=128, write_only=True)
+    token = serializers.CharField(max_length=255)
+
+    def validate(self, data):
+        email = data.get('email')
+        user = User.objects.filter(email=email).first()
+        if data.get('password') != data.get('confirm_password'):
+            msg = "The passwords do not match."
+            raise serializers.ValidationError(msg)
+        token = data.get('token')
+        validate_token = default_token_generator.check_token(user, token)
+        if not validate_token:
+            msg = "The link has expried, kindly request for another reset."
+            raise serializers.ValidationError(msg)
+        user.set_password(data.get('password'))
+        user.save()
+        return data
