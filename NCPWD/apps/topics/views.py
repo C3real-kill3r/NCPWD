@@ -8,3 +8,4 @@ class TopicViewSet(ModelViewSet):
     permission_classes = (IsAdmin,)
     queryset = Topic.objects.all()
     serializer_class = TopicSerilizer
+

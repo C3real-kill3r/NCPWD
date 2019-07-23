@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'NCPWD.apps.authentication',
     'NCPWD.apps.user_profile',
-    'NCPWD.apps.topics'
+    'NCPWD.apps.topics',
+    'NCPWD.apps.comments',
+    'NCPWD.apps.statistics'
 ]
 
 MIDDLEWARE = [

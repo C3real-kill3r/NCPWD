@@ -13,6 +13,8 @@ class UserDisabilitySerializer(ModelSerializer):
 
 class ProfileSerializer(ModelSerializer):
     national_id = CharField(required=True)
+    firstname = CharField(required=True)
+    lastname = CharField(required=True)
     phone = CharField(required=True)
     location = CharField(required=True)
     nationality = CharField(required=True)
@@ -52,6 +54,8 @@ class ProfileSerializer(ModelSerializer):
             "national_id": instance.national_id,
             "date_of_birth": instance.date_of_birth,
             "nationality": instance.nationality,
+            "firstname": instance.firstname,
+            "lastname": instance.lastnmae,
             "sex": instance.sex,
             "disabilities": []
         }
@@ -82,7 +86,6 @@ class ProfileSerializer(ModelSerializer):
 
         instance.save()
         return instance
-
 
 
 class DisabilitySerializer(ModelSerializer):

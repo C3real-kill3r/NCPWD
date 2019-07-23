@@ -1,12 +1,12 @@
 from .views import TopicViewSet
-from rest_framework import  routers
+from rest_framework import routers
 
 
 app_name = "topics"
 
 router = routers.SimpleRouter()
 
-router.register("topics/", TopicViewSet)
+router.register(r"topics", TopicViewSet)
 
 urlpatterns = router.urls
 

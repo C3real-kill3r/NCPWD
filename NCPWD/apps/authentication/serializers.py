@@ -30,7 +30,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password', 'token']
+        fields = ['email', 'username', 'password', 'token']
 
     def validate_username(self, data):
         candidate_name = data
