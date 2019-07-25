@@ -27,7 +27,7 @@ class RegistrationAPIView(CreateAPIView):
     serializer_class = RegistrationSerializer
 
     def post(self, request, *args, **kwargs):
-        user = request.data.get('user', {})
+        user = request.data
         serializer = self.serializer_class(data=user)
         serializer.validate_username(user["username"])
         serializer.validate_email(user["email"])
@@ -37,8 +37,7 @@ class RegistrationAPIView(CreateAPIView):
         serializer.save()
 
         user = User.objects.filter(email=user['email']).first()
-        user_profile = Profile.objects.create(user=user);
-        print(user_profile)
+        Profile.objects.create(user=user)
 
         RegistrationAPIView.send_account_activation_email(user, request)
 
@@ -76,7 +75,7 @@ class LoginAPIView(CreateAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
-        user = request.data.get('user', {})
+        user = request.data
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
 

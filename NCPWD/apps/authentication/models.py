@@ -17,14 +17,8 @@ class UserManager(BaseUserManager):
     to create `User` objects.
     """
 
-    def create_user(self, first_name, last_name, username, email, password=None):
+    def create_user(self,username, email, password=None):
         """Create and return a `User` with an email, username and password."""
-        if first_name is None:
-            raise TypeError('Users must have a first name.')
-
-        if last_name is None:
-            raise TypeError('Users must have a last name.')
-
         if username is None:
             raise TypeError('Users must have a username.')
 
@@ -32,8 +26,6 @@ class UserManager(BaseUserManager):
             raise TypeError('Users must have an email address.')
 
         user = self.model(
-            first_name=first_name,
-            last_name=last_name,
             username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
@@ -58,8 +50,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=255, default="")
-    last_name = models.CharField(max_length=255, default="")
+    role_choices = [
+        ("ADMIN", "admin"),
+        ("USER", "user")
+    ]
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True)
     is_active = models.BooleanField(default=True)
@@ -68,6 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_subscribed = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    role = models.CharField(default="user", choices=role_choices, max_length=10)
 
     # More fields required by Django when specifying a custom user model.
 

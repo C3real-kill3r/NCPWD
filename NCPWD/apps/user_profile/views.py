@@ -4,7 +4,7 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from NCPWD.apps.user_profile.serializers import ProfileSerializer, DisabilitySerializer
 from NCPWD.permission import IsOwnerOrReadOnly
-from .models import  Profile, Disability
+from .models import Profile, Disability
 
 # Create your views here.
 
@@ -15,7 +15,7 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
                      mixins.ListModelMixin,
                      GenericViewSet
                      ):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsOwnerOrReadOnly,)
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
 

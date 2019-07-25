@@ -9,12 +9,6 @@ from NCPWD.apps.core import validations
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    first_name = serializers.CharField(
-        required=True,
-    )
-    last_name = serializers.CharField(
-        required=True,
-    )
     username = serializers.CharField(
         required=True,
     )
@@ -36,7 +30,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password', 'token']
+        fields = ['email', 'username', 'password', 'token']
 
     def validate_username(self, data):
         candidate_name = data
