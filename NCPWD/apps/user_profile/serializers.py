@@ -55,7 +55,7 @@ class ProfileSerializer(ModelSerializer):
             "date_of_birth": instance.date_of_birth,
             "nationality": instance.nationality,
             "firstname": instance.firstname,
-            "lastname": instance.lastnmae,
+            "lastname": instance.lastname,
             "sex": instance.sex,
             "disabilities": []
         }
@@ -73,10 +73,13 @@ class ProfileSerializer(ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.location = validated_data.get("location", instance.location)
-        instance.national_id = validated_data.get("national_id", instance.national_id)
+        instance.national_id = validated_data.get(
+            "national_id", instance.national_id)
         instance.phone = validated_data.get("phone", instance.phone)
-        instance.date_of_birth = validated_data.get("date_of_birth", instance.date_of_birth)
-        instance.nationality = validated_data.get("nationality", instance.nationality)
+        instance.date_of_birth = validated_data.get(
+            "date_of_birth", instance.date_of_birth)
+        instance.nationality = validated_data.get(
+            "nationality", instance.nationality)
         instance.sex = validated_data.get("sex", instance.sex)
         update_disabilities = list(validated_data.get("disabilities"))
         for i in UserDisability.objects.filter(profile=instance):
@@ -92,5 +95,3 @@ class DisabilitySerializer(ModelSerializer):
     class Meta:
         model = Disability
         fields = "__all__"
-
-

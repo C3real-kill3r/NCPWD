@@ -1,14 +1,10 @@
 from django.urls import path
-from .views import ProfileViewSet, DisabilityViewSet
-from rest_framework import routers
-
-
-router = routers.SimpleRouter()
+from .views import ProfileListView, ProfileGetView, DisabilityViewSet
 
 app_name = "user_profile"
 
-router.register(r"profiles", ProfileViewSet)
-router.register(r"disability", DisabilityViewSet)
-
-urlpatterns = router.urls
-
+urlpatterns = [
+    path('', ProfileListView.as_view(), name='get-profiles'),
+    path('<str:username>/', ProfileGetView.as_view(), name='profiles'),
+    path(r"disability", DisabilityViewSet),
+    ]

@@ -20,7 +20,8 @@ class Profile(models.Model):
     nationality = models.CharField(max_length=40, null=True)
     sex = models.CharField(max_length=10, null=True, choices=sex_choices)
     date_of_birth = models.DateField(null=True)
-    disabilities = models.ManyToManyField(Disability, blank=True, through='UserDisability')
+    disabilities = models.ManyToManyField(
+        Disability, blank=True, through='UserDisability')
 
 
 class UserDisability(models.Model):
@@ -32,10 +33,3 @@ class UserDisability(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     disability = models.ForeignKey(Disability, on_delete=models.CASCADE)
     cause = models.CharField(max_length=10, choices=cause_choices)
-
-
-
-
-
-
-
