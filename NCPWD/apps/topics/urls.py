@@ -1,12 +1,12 @@
-from .views import TopicViewSet
+from django.urls import path, include
+from .views import TopicAPIView
 from rest_framework import routers
 
 
 app_name = "topics"
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 
-router.register(r"topics", TopicViewSet)
+router.register(r"topics", TopicAPIView)
 
-urlpatterns = router.urls
-
+urlpatterns = [path('', include(router.urls))]
