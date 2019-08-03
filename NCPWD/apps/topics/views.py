@@ -50,5 +50,3 @@ class TopicAPIView(
         serializer.save(author=request.user)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-        return Response({'message': 'The topic has been deleted.'})
