@@ -27,6 +27,22 @@ class ProfileListView(ListAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class MyProfile(APIView):
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)
+    serializer_class = ProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        """
+        Get a listing of user profiles. Excludes the requester.
+        """
+        try:
+            queryset = Profile.objects.filter(user=request.user)
+        except Profile.DoesNotExist:
+            raise ProfileDoesNotExist
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class ProfileGetView(APIView):
     """Lists fetches a single profile and also updates a specific profile"""
 
