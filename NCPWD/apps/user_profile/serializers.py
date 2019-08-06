@@ -1,5 +1,5 @@
 from rest_framework.serializers import (
-    ModelSerializer, CharField, DateField, ValidationError
+    ModelSerializer, CharField, DateField, ValidationError,
 )
 
 from NCPWD.apps.user_profile.models import Profile, Disability, UserDisability
@@ -14,6 +14,7 @@ class UserDisabilitySerializer(ModelSerializer):
 class ProfileSerializer(ModelSerializer):
     national_id = CharField(required=True)
     firstname = CharField(required=True)
+    email = CharField(required=True)
     lastname = CharField(required=True)
     phone = CharField(required=True)
     location = CharField(required=True)
@@ -50,6 +51,7 @@ class ProfileSerializer(ModelSerializer):
             "id": instance.id,
             "user": instance.user.id,
             "phone": instance.phone,
+            "email": instance.email,
             "location": instance.location,
             "national_id": instance.national_id,
             "date_of_birth": instance.date_of_birth,
