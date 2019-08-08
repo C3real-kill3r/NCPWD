@@ -20,7 +20,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, default="location")
     nationality = models.CharField(max_length=40, default="nationality")
     sex = models.CharField(max_length=10, default="sex", choices=sex_choices)
-    date_of_birth = models.DateField(null=True)
+    date_of_birth = models.DateField(default="date of birth")
     disabilities = models.ManyToManyField(
         Disability, blank=True, through='UserDisability')
 
