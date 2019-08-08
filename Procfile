@@ -1,1 +1,1 @@
-web: gunicorn NCPWD.wsgi:application
+web: gunicorn NCPWD.wsgi
