@@ -42,6 +42,21 @@ class MyProfile(APIView):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def put(self, request, *args, **kwargs):
+        """Allows authenticated users to update only their profiles."""
+        try:
+            Profile.objects.filter(user__username=request.user)
+        except Profile.DoesNotExist:
+            raise ProfileDoesNotExist
+
+        data = request.data
+
+        serializer = self.serializer_class(
+            instance=request.user.profile, data=data, partial=True)
+        serializer.is_valid()
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class ProfileGetView(APIView):
     """Lists fetches a single profile and also updates a specific profile"""
@@ -58,21 +73,6 @@ class ProfileGetView(APIView):
             raise ProfileDoesNotExist
 
         serializer = self.serializer_class(profile)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request, username):
-        """Allows authenticated users to update only their profiles."""
-        try:
-            Profile.objects.get(user__username=username)
-        except Profile.DoesNotExist:
-            raise ProfileDoesNotExist
-
-        data = request.data
-
-        serializer = self.serializer_class(
-            instance=request.user.profile, data=data, partial=True)
-        serializer.is_valid()
-        serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
