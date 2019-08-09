@@ -2,13 +2,7 @@ from rest_framework.serializers import (
     ModelSerializer, CharField, DateField, ValidationError,
 )
 
-from NCPWD.apps.user_profile.models import Profile, Disability, UserDisability
-
-
-class UserDisabilitySerializer(ModelSerializer):
-    class Meta:
-        model = UserDisability
-        exclude = ["profile"]
+from NCPWD.apps.user_profile.models import Profile
 
 
 class ProfileSerializer(ModelSerializer):
@@ -20,7 +14,8 @@ class ProfileSerializer(ModelSerializer):
     location = CharField(required=True)
     nationality = CharField(required=True)
     date_of_birth = DateField(required=True)
-    disabilities = UserDisabilitySerializer(many=True)
+    disability = CharField(required=True)
+    cause = CharField(required=True)
 
     class Meta:
         model = Profile
@@ -40,18 +35,9 @@ class ProfileSerializer(ModelSerializer):
             "firstname": instance.firstname,
             "lastname": instance.lastname,
             "sex": instance.sex,
-            "disabilities": []
+            "disability": instance.disability,
+            "cause": instance.cause,
         }
-
-        disabilities = UserDisability.objects.filter(profile=instance)
-        for i in disabilities:
-            disab = {
-                "id": i.id,
-                "profile": i.profile.id,
-                "disability": i.disability.id,
-                "cause": i.cause
-            }
-            ret["disabilities"].append(disab)
         return ret
 
     def update(self, instance, validated_data):
@@ -64,17 +50,9 @@ class ProfileSerializer(ModelSerializer):
         instance.nationality = validated_data.get(
             "nationality", instance.nationality)
         instance.sex = validated_data.get("sex", instance.sex)
-        update_disabilities = list(validated_data.get("disabilities"))
-        for i in UserDisability.objects.filter(profile=instance):
-            i.delete()
-        for i in update_disabilities:
-            UserDisability(**dict(i), profile=instance).save()
+        instance.disability = validated_data.get(
+            "disability", instance.disability)
+        instance.cause = validated_data.get("cause", instance.cause)
 
         instance.save()
         return instance
-
-
-class DisabilitySerializer(ModelSerializer):
-    class Meta:
-        model = Disability
-        fields = "__all__"

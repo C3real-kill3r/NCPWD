@@ -1,13 +1,12 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView
-from rest_framework.viewsets import ModelViewSet
 from NCPWD.apps.user_profile.serializers import (
-    ProfileSerializer, DisabilitySerializer)
+    ProfileSerializer)
 from NCPWD.permission import IsOwnerOrReadOnly
-from .models import Profile, Disability
+from .models import Profile
 from NCPWD.apps.core.exceptions import ProfileDoesNotExist
 
 
@@ -74,9 +73,3 @@ class ProfileGetView(APIView):
 
         serializer = self.serializer_class(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class DisabilityViewSet(ModelViewSet):
-    permission_classes = (AllowAny,)
-    serializer_class = DisabilitySerializer
-    queryset = Disability.objects.all()
