@@ -27,25 +27,6 @@ class ProfileSerializer(ModelSerializer):
         fields = "__all__"
         read_only_fields = ["user"]
 
-    def validate_national_id(self, national_id):
-        try:
-            int(national_id)
-        except ValueError:
-            raise ValidationError(
-                {"national_id": "must be a number"}
-            )
-        return national_id
-
-    def validate_phone(self, phone):
-        try:
-            int(phone)
-        except ValueError:
-            raise ValidationError(
-                {"phone": "must be a number"}
-            )
-
-        return phone
-
     def to_representation(self, instance):
         ret = {
             "id": instance.id,
