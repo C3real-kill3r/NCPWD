@@ -81,7 +81,9 @@ class LoginAPIView(CreateAPIView):
 
         user = User.objects.get(email=user['email'])
         resp = {
-            "token": serializer.data['token']
+            "token": serializer.data['token'],
+            "username": serializer.data['username'],
+            "email": serializer.data['email']
         }
 
         return Response(resp, status=status.HTTP_200_OK)
