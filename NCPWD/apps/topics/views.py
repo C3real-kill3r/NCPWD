@@ -1,4 +1,4 @@
-from NCPWD.permission import IsAdmin
+from NCPWD.permission import IsAdmin, IsOwnerOrReadOnly
 from .models import Topic
 from rest_framework import mixins, viewsets
 from rest_framework.response import Response
@@ -11,7 +11,7 @@ class TopicAPIView(
     mixins.DestroyModelMixin, viewsets.GenericViewSet, mixins.ListModelMixin): # noqa
 
     lookup_url_kwarg = 'pk'
-    permission_classes = (IsAdmin,)
+    permission_classes = (IsAdmin, IsOwnerOrReadOnly)
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
 
