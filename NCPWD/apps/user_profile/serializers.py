@@ -45,6 +45,10 @@ class ProfileSerializer(ModelSerializer):
         instance.national_id = validated_data.get(
             "national_id", instance.national_id)
         instance.phone = validated_data.get("phone", instance.phone)
+        instance.firstname = validated_data.get(
+            "firstname", instance.firstname)
+        instance.lastname = validated_data.get("lastname", instance.lastname)
+        instance.email = validated_data.get("email", instance.email)
         instance.date_of_birth = validated_data.get(
             "date_of_birth", instance.date_of_birth)
         instance.nationality = validated_data.get(
