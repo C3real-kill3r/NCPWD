@@ -14,7 +14,7 @@ install:
 	${SUCCESS} "Done.🎉 🤓 🎊"
 
 run:
-	@ python manage.py runserver
+	@ source scripts/run.sh && bash run.sh
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
