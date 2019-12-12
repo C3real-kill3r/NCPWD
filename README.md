@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_shield)
+=======
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_small)
+>>>>>>> add fossa for Realtime license and vulnerability management
 
 # NCPWD
 
@@ -42,7 +46,6 @@ Data will be updated by the council through the web application that will sync w
 3. The mobile app would increase visibility of NCPWD. It would be easier to engage with persons with disabilities on the go through push notifications directly to their phones.
 
 4. Most importantly they'll be able to receive information on the go. This would ensure unfettered access to information and streamlined flow of information to the PWDs
-
 
 
 ## License
