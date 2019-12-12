@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name="NCPWD",
@@ -10,8 +10,8 @@ setup(
     long_description_content_type=" ",
     author="YAHYA",
     author_email="husain.host@gmail.com",
-    python_requires=REQUIRES_PYTHON,
-    url=URL,
+    # python_requires=REQUIRES_PYTHON,
+    # url=URL,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     install_requires=[
         "asgiref==3.2.3",
