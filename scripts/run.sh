@@ -1,3 +1,5 @@
+#!/bin/sh
+
 RED='\033[0;31m'
 
 if [ "$(flake8 . ; echo $? | grep 1)" ]
