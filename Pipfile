@@ -17,6 +17,7 @@ whitenoise = "*"
 django-cors-headers = "*"
 mypy = "*"
 mkdocs = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,26 +1,33 @@
-version: '3'
+version: '3.7'
+
 services:
   db:
-    environment:
-      POSTGRES_DB: ncpwd_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD:
-    restart: always
     image: postgres
-    expose:
-      - '5432'
-
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - backend
+    ports:
+      - '5432:5432'
   web:
     environment:
-      DATABASE_URL: postgres://postgres@db/ncpwd_db
-      DJANGO_MANAGEPY_MIGRATE: 'on'
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+      DATABASE_URL: postgres://postgres@db/postgres
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
-      - '8000:8000'
+      - 8000:8000
     depends_on:
       - db
+    links:
+      - db:db
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    driver: bridge
