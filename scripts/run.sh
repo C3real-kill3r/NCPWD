@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 RED='\033[0;31m'
-python manage.py migrate
+python3 manage.py migrations
 
 if [ "$(flake8 . ; echo $? | grep 1)" ]
 then

@@ -10,7 +10,6 @@ pipenv-setup = "*"
 [packages]
 django = "*"
 djangorestframework = "*"
-psycopg2-binary = "*"
 djangorestframework-simplejwt = "*"
 gunicorn = "*"
 whitenoise = "*"
@@ -18,6 +17,7 @@ django-cors-headers = "*"
 mypy = "*"
 mkdocs = "*"
 django-environ = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"

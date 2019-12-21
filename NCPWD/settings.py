@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ DEBUG = int(os.environ.get("DEBUG", default=1))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",'*').split(',')
 
 # Application definition
 CORS_ORIGIN_ALLOW_ALL= True
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'NCPWD.apps.user_profile',
     'NCPWD.apps.topics',
     'NCPWD.apps.comments',
-    'NCPWD.apps.statistics'
+    'NCPWD.apps.statistics',
 ]
 
 MIDDLEWARE = [
@@ -86,11 +87,14 @@ WSGI_APPLICATION = 'NCPWD.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'db',
-        "PORT": 5432
+         'NAME': os.environ.get('DATABASE_NAME', 'ncpwd_db'),
+         'USER': os.environ.get('DATABASE_USERNAME', 'postgres'),
+         'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
+         'HOST': os.environ.get('DATABASE_HOST', '127.0.0.1'),
+         'PORT': os.environ.get('DATABASE_PORT', 5432),
+         'OPTIONS': json.loads(
+             os.environ.get('DATABASE_OPTIONS', '{}')
+             ),
     }
 }
 

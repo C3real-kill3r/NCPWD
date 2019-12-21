@@ -12,8 +12,10 @@ services:
   web:
     environment:
       DATABASE_URL: postgres://postgres@db/postgres
-    build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: python /code/manage.py runserver
     volumes:
       - .:/code
     ports:
