@@ -11,6 +11,7 @@ In line with the councils objectives, the council carries out various activities
 ## Proposed flow of information
 
 ![NCPWD_info_flow](https://user-images.githubusercontent.com/38909130/61181471-c4fb7b80-a62f-11e9-9673-4feb81379196.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_shield)
 
 The application will be divided into two platforms, android and web. The web application will be used by the administrators to convey messages and view statistics to help in critical decision making. The android application(android version 4.0+) will be used by the PWD to engage with one another and also receive regular updates from the administrators.
 
@@ -41,3 +42,7 @@ Data will be updated by the council through the web application that will sync w
 
 4. Most importantly they'll be able to receive information on the go. This would ensure unfettered access to information and streamlined flow of information to the PWDs
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_large)
