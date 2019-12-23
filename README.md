@@ -1,3 +1,6 @@
+![NCPWD_info_flow](https://user-images.githubusercontent.com/38909130/61181471-c4fb7b80-a62f-11e9-9673-4feb81379196.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_shield)
+
 # NCPWD
 
 NCPWD is an app that seeks to create an enabling environment for persons with disability to operate effectively and efficiently.
@@ -9,9 +12,6 @@ The National Council of People Living with Disabilities (NCPWD), is a corporatio
 In line with the councils objectives, the council carries out various activities which heavily relies on interaction with people with disabilities.
 
 ## Proposed flow of information
-
-![NCPWD_info_flow](https://user-images.githubusercontent.com/38909130/61181471-c4fb7b80-a62f-11e9-9673-4feb81379196.png)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_shield)
 
 The application will be divided into two platforms, android and web. The web application will be used by the administrators to convey messages and view statistics to help in critical decision making. The android application(android version 4.0+) will be used by the PWD to engage with one another and also receive regular updates from the administrators.
 
