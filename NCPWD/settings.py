@@ -174,3 +174,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Cloud Storage
+# ------------------------------------------------------------------------------
+# See: https://django-storages.readthedocs.io/en/latest/
+USE_GCS = os.environ.get('USE_GCS', default=False)
+if USE_GCS:
+    # add the correct application credentials
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "gcloud/bucket-admin.json"
+    # define the default file storage for both static and media
+    DEFAULT_FILE_STORAGE = 'config.storage_backends.GoogleCloudMediaStorage'
+    STATICFILES_STORAGE = 'config.storage_backends.GoogleCloudStaticStorage'
+    # define the static urls for both static and media
+    GS_MEDIA_BUCKET_NAME="ncpwd_bucket-media"
+    GS_STATIC_BUCKET_NAME="ncpwd_bucket-1"
+    STATIC_URL = 'https://storage.googleapis.com/{}/'.format(GS_STATIC_BUCKET_NAME)
+    MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_MEDIA_BUCKET_NAME)

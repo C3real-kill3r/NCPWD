@@ -18,6 +18,8 @@ mypy = "*"
 mkdocs = "*"
 django-environ = "*"
 psycopg2-binary = "*"
+django-storages = "*"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.7"
