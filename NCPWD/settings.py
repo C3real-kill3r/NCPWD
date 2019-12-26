@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,12 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '82ed4*q@k=m9kq(e1oxxmm7k5%d(ic5^l#@3m5r9iji1l9gv@v'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=1))
 
-
-ALLOWED_HOSTS = ['*', "http://localhost:4200"]
-
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",'*').split(',')
 
 # Application definition
 CORS_ORIGIN_ALLOW_ALL= True
@@ -45,7 +44,7 @@ INSTALLED_APPS = [
     'NCPWD.apps.user_profile',
     'NCPWD.apps.topics',
     'NCPWD.apps.comments',
-    'NCPWD.apps.statistics'
+    'NCPWD.apps.statistics',
 ]
 
 MIDDLEWARE = [
@@ -84,18 +83,20 @@ WSGI_APPLICATION = 'NCPWD.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        "PORT": 5432
+        'ENGINE': 'django.db.backends.postgresql',
+         'NAME': os.environ.get('DATABASE_NAME', 'ncpwd_db'),
+         'USER': os.environ.get('DATABASE_USERNAME', 'postgres'),
+         'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
+         'HOST': os.environ.get('DATABASE_HOST', '127.0.0.1'),
+         'PORT': os.environ.get('DATABASE_PORT', 5432),
+         'OPTIONS': json.loads(
+             os.environ.get('DATABASE_OPTIONS', '{}')
+             ),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -124,11 +125,11 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'authentication.User'
 
 # sendGrid API Settings
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_HOST_SENDER = os.getenv("EMAIL_HOST_SENDER")
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_SENDER = os.environ.get("EMAIL_HOST_SENDER")
 EMAIL_USE_TLS = True
 
 TEMPLATES = [
@@ -173,3 +174,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Cloud Storage
+# ------------------------------------------------------------------------------
+# See: https://django-storages.readthedocs.io/en/latest/
+USE_GCS = os.environ.get('USE_GCS', default=False)
+if USE_GCS:
+    # add the correct application credentials
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "gcloud/bucket-admin.json"
+    # define the default file storage for both static and media
+    DEFAULT_FILE_STORAGE = 'config.storage_backends.GoogleCloudMediaStorage'
+    STATICFILES_STORAGE = 'config.storage_backends.GoogleCloudStaticStorage'
+    # define the static urls for both static and media
+    GS_MEDIA_BUCKET_NAME="ncpwd_bucket-media"
+    GS_STATIC_BUCKET_NAME="ncpwd_bucket-1"
+    STATIC_URL = 'https://storage.googleapis.com/{}/'.format(GS_STATIC_BUCKET_NAME)
+    MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_MEDIA_BUCKET_NAME)
