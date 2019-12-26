@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="YAHYA-H">
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Quick Start - NCPWD Documentation</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Quick Start", url: "#_top", children: [
+              {title: "Setup", url: "#setup" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../history/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../history/" class="btn btn-xs btn-link">
+        History
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../what_is_ncpwd/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../what_is_ncpwd/" class="btn btn-xs btn-link">
+        What is NCPWD?
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="quick-start">Quick Start</h1>
+<p>Make sure you've read <a href="../what_is_ncpwd/">What is Pinax?</a> to get a conceptual overview of NCPWD.</p>
+<h2 id="setup">Setup</h2>
+<p>Follow these instructions to start working locally on the project:</p>
+<ul>
+<li>Download &amp; clone this repo:</li>
+</ul>
+<pre><code>https://github.com/C3real-kill3r/NCPWD.git
+</code></pre>
+
+<p>We strongly recommend running NCPWD in a virtual environment:</p>
+<ul>
+<li>Install python version specified on <code>runtime.txt</code>
+  and run to setup virtual environment:</li>
+</ul>
+<pre><code class="shell">cd NCPWD
+pipenv --three
+make venv
+</code></pre>
+
+<ul>
+<li>and install dependencies:</li>
+</ul>
+<pre><code class="bash">make install
+</code></pre>
+
+<ul>
+<li>Migrate database:</li>
+</ul>
+<pre><code class="bash">python manage.py migrate
+</code></pre>
+
+<ul>
+<li>Create django admin super user:</li>
+</ul>
+<pre><code class="bash">python manage.py createsuperuser
+</code></pre>
+
+<p>Once we have made the first time setup,
+we can start everything up running:</p>
+<pre><code class="bash">make run
+</code></pre>
+
+<p>To build &amp; run Docker
+<code>docker-compose up</code></p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../history/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../history/" class="btn btn-xs btn-link">
+        History
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../what_is_ncpwd/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../what_is_ncpwd/" class="btn btn-xs btn-link">
+        What is NCPWD?
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+      <p>
+        <a href="https://github.com/C3real-kill3r/NCPWD.git/edit/master/docs/quick_start.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
