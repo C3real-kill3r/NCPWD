@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_shield)
-=======
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FC3real-kill3r%2FNCPWD?ref=badge_small)
->>>>>>> add fossa for Realtime license and vulnerability management
 
 # NCPWD
 
