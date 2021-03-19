@@ -19,7 +19,7 @@ setup(
         "django==3.0.1",
         "django-cors-headers==3.2.0",
         "django-environ==0.4.5",
-        "djangorestframework==3.11.0",
+        "djangorestframework==3.11.2",
         "djangorestframework-simplejwt==4.4.0",
         "gunicorn==20.0.4",
         "jinja2==2.10.3",
