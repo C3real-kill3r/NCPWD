@@ -22,7 +22,7 @@ setup(
         "djangorestframework==3.11.0",
         "djangorestframework-simplejwt==4.4.0",
         "gunicorn==20.0.4",
-        "jinja2==2.10.3",
+        "jinja2==2.11.3",
         "livereload==2.6.1",
         "markdown==3.1.1",
         "markupsafe==1.1.1",
