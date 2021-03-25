@@ -32,7 +32,7 @@ setup(
         "psycopg2-binary==2.8.4",
         "pyjwt==1.7.1",
         "pytz==2019.3",
-        "pyyaml==5.2",
+        "pyyaml==5.4",
         "six==1.13.0",
         "sqlparse==0.3.0",
         "tornado==6.0.3",
