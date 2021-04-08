@@ -16,7 +16,7 @@ setup(
     install_requires=[
         "asgiref==3.2.3",
         "click==7.0",
-        "django==3.0.1",
+        "django==3.0.14",
         "django-cors-headers==3.2.0",
         "django-environ==0.4.5",
         "djangorestframework==3.11.0",
