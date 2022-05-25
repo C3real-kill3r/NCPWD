@@ -30,7 +30,7 @@ setup(
         "mypy==0.760",
         "mypy-extensions==0.4.3",
         "psycopg2-binary==2.8.4",
-        "pyjwt==1.7.1",
+        "pyjwt==2.4.0",
         "pytz==2019.3",
         "pyyaml==5.2",
         "six==1.13.0",
